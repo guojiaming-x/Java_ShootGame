@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'cn.edu'
+version = '1.0'
+
+mainClassName = 'cn.edu.game.MainGame'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'cn.edu.game.MainGame'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
